@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mangalam Studio | Premium Photography in Dhanbad</title>
+    <meta name="description" content="Expert wedding photography, studio portraits, and photo printing in Dhansar, Dhanbad. Call +91 70508 80507 to book.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS (CDN for all-in-one setup) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        studio: {
+                            black: '#121212',
+                            gold: '#D4AF37',
+                            goldHover: '#AA8C2C',
+                            charcoal: '#1E1E1E',
+                            textMain: '#F5F5F5',
+                            textMuted: '#A3A3A3',
+                        }
+                    },
+                    fontFamily: {
+                        playfair: ['"Playfair Display"', 'serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for Scroll Animations -->
+    <style>
+        body { font-family: 'Montserrat', sans-serif; background-color: #121212; color: #F5F5F5; }
+        .font-playfair { font-family: '"Playfair Display"', serif; }
+        
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased pb-16 md:pb-0">
+
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-50 bg-studio-black/95 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="font-playfair text-2xl font-bold text-studio-gold">
+                Mangalam Studio
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest text-studio-textMuted">
+                <a href="#services" class="hover:text-studio-gold transition duration-300">Services</a>
+                <a href="#portfolio" class="hover:text-studio-gold transition duration-300">Portfolio</a>
+                <a href="#contact" class="hover:text-studio-gold transition duration-300">Contact</a>
+            </div>
+            <a href="tel:+917050880507" class="hidden md:block bg-studio-gold text-studio-black px-6 py-2 font-bold uppercase tracking-wide text-sm hover:bg-studio-goldHover transition duration-300">
+                Book Now
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <!-- Background Image Placeholder -->
+            <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=2000&auto=format&fit=crop" 
+                 alt="Wedding Photography" 
+                 class="w-full h-full object-cover opacity-40">
+            <div class="absolute inset-0 bg-gradient-to-t from-studio-black to-transparent"></div>
+        </div>
+        
+        <div class="z-10 text-center px-4 max-w-4xl mt-16 reveal active">
+            <h1 class="font-playfair text-5xl md:text-7xl mb-6 text-white leading-tight">
+                Capturing Dhanbad’s <br/><span class="text-studio-gold italic">Most Beautiful</span> Moments.
+            </h1>
+            <p class="text-lg md:text-xl text-studio-textMuted mb-10 max-w-2xl mx-auto">
+                From timeless wedding stories to professional studio portraits, we turn your memories into art. Located in the heart of Dhansar.
+            </p>
+            <a href="#portfolio" class="inline-block border-2 border-studio-gold text-studio-gold px-8 py-3 uppercase tracking-widest font-semibold hover:bg-studio-gold hover:text-studio-black transition duration-300">
+                View Portfolio
+            </a>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="py-24 bg-studio-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-playfair text-4xl text-studio-gold mb-4">Our Services</h2>
+                <p class="text-studio-textMuted max-w-2xl mx-auto">Premium photography and printing services tailored to your needs.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-studio-charcoal p-8 hover:-translate-y-2 transition duration-300 border border-white/5 hover:border-studio-gold/30 reveal">
+                    <i class="fa-solid fa-camera text-studio-gold text-4xl mb-6"></i>
+                    <h3 class="font-playfair text-2xl mb-3">Wedding & Events</h3>
+                    <p class="text-studio-textMuted text-sm leading-relaxed">Cinematic wedding coverage, pre-wedding shoots, and grand event photography across Jharkhand.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="bg-studio-charcoal p-8 hover:-translate-y-2 transition duration-300 border border-white/5 hover:border-studio-gold/30 reveal">
+                    <i class="fa-solid fa-users text-studio-gold text-4xl mb-6"></i>
+                    <h3 class="font-playfair text-2xl mb-3">Studio Portraits</h3>
+                    <p class="text-studio-textMuted text-sm leading-relaxed">Professional headshots, family portraits, and instant passport-size photos with perfect lighting.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="bg-studio-charcoal p-8 hover:-translate-y-2 transition duration-300 border border-white/5 hover:border-studio-gold/30 reveal">
+                    <i class="fa-solid fa-image text-studio-gold text-4xl mb-6"></i>
+                    <h3 class="font-playfair text-2xl mb-3">Album & Printing</h3>
+                    <p class="text-studio-textMuted text-sm leading-relaxed">High-quality photo printing, custom mug prints, and luxurious photobook album designs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO GALLERY -->
+    <section id="portfolio" class="py-24 bg-[#0a0a0a]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-playfair text-4xl text-studio-gold mb-4">Selected Works</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="overflow-hidden bg-studio-charcoal aspect-square reveal">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" alt="Wedding" class="w-full h-full object-cover hover:scale-110 transition duration-500 cursor-pointer opacity-80 hover:opacity-100">
+                </div>
+                <div class="overflow-hidden bg-studio-charcoal aspect-square reveal">
+                    <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=800&q=80" alt="Portrait" class="w-full h-full object-cover hover:scale-110 transition duration-500 cursor-pointer opacity-80 hover:opacity-100">
+                </div>
+                <div class="overflow-hidden bg-studio-charcoal aspect-square reveal">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" alt="Event" class="w-full h-full object-cover hover:scale-110 transition duration-500 cursor-pointer opacity-80 hover:opacity-100">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-24 bg-studio-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                
+                <div class="reveal">
+                    <h2 class="font-playfair text-4xl text-studio-gold mb-6">Let's Talk</h2>
+                    <p class="text-studio-textMuted mb-8 leading-relaxed">Ready to frame your story? Visit our studio opposite Raj Clinic or drop us a message to check our availability.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-location-dot text-studio-gold text-2xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">Studio Address</h4>
+                                <p class="text-studio-textMuted text-sm">Joraphatak Road, Opposite Raj Clinic<br/>Dhansar, Dhanbad, Jharkhand 826007</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-phone text-studio-gold text-xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">Phone / WhatsApp</h4>
+                                <p class="text-studio-textMuted text-sm">+91 70508 80507</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-studio-charcoal p-8 border border-white/10 reveal">
+                    <form class="space-y-4" onsubmit="event.preventDefault(); alert('Inquiry feature will be connected soon!');">
+                        <input type="text" placeholder="Your Name" required class="w-full bg-studio-black border border-white/20 p-3 text-white focus:border-studio-gold outline-none transition">
+                        <input type="tel" placeholder="Phone Number" required class="w-full bg-studio-black border border-white/20 p-3 text-white focus:border-studio-gold outline-none transition">
+                        <textarea placeholder="Event Details or Query" rows="4" required class="w-full bg-studio-black border border-white/20 p-3 text-white focus:border-studio-gold outline-none transition"></textarea>
+                        
+                        <p class="text-xs text-studio-textMuted mb-4">
+                            * Note: Advance payments for booking dates can easily be made via Paytm at the studio or online.
+                        </p>
+
+                        <button type="submit" class="w-full bg-studio-gold text-studio-black font-bold uppercase tracking-widest py-3 hover:bg-studio-goldHover transition duration-300">
+                            Send Inquiry
+                        </button>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#0a0a0a] py-8 border-t border-white/10 text-center">
+        <p class="text-studio-textMuted text-sm">
+            &copy; 2024 Mangalam Studio Dhanbad. All rights reserved.
+        </p>
+    </footer>
+
+    <!-- MOBILE STICKY BOTTOM BAR -->
+    <div class="md:hidden fixed bottom-0 left-0 w-full bg-studio-charcoal border-t border-white/10 flex z-50">
+        <a href="tel:+917050880507" class="flex-1 flex justify-center items-center py-4 bg-studio-gold text-studio-black font-bold uppercase text-sm">
+            <i class="fa-solid fa-phone mr-2"></i> Call Now
+        </a>
+        <a href="https://wa.me/917050880507" class="flex-1 flex justify-center items-center py-4 text-white hover:text-green-400 uppercase text-sm font-bold bg-[#1E1E1E]">
+            <i class="fa-brands fa-whatsapp text-lg mr-2"></i> WhatsApp
+        </a>
+    </div>
+
+    <!-- JavaScript for Scroll Reveal Animations -->
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+    </script>
+</body>
+  </html>
+
