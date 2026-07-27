@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Mangalam Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>body { font-family: 'Montserrat', sans-serif; background-color: #0a0a0a; color: #F5F5F5; }</style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-3xl mx-auto bg-[#1A1A1A] p-8 border border-[#D4AF37]/30 rounded-lg shadow-2xl">
+        <div class="flex justify-between items-center border-b border-white/10 pb-4 mb-8">
+            <h1 class="text-2xl font-bold text-[#D4AF37]">Admin Panel</h1>
+            <a href="index.html" class="text-sm border border-[#D4AF37] px-4 py-2 hover:bg-[#D4AF37] hover:text-black transition">Open Website</a>
+        </div>
+
+        <!-- 1. EDIT TEXT -->
+        <div class="mb-10">
+            <h2 class="text-lg font-bold mb-4">1. Change Main Heading</h2>
+            <input type="text" id="hero-text" placeholder="Example: Framing Life's Masterpieces." class="w-full bg-black border border-white/20 p-3 text-white outline-none mb-4">
+            <button onclick="saveText()" class="bg-[#D4AF37] text-black font-bold px-6 py-2">Save Text</button>
+        </div>
+
+        <!-- 2. UPLOAD DIRECT PHOTO -->
+        <div class="mb-10 border-t border-white/10 pt-8">
+            <h2 class="text-lg font-bold mb-4">2. Upload Photo directly from Device</h2>
+            <!-- DIRECT FILE UPLOAD INPUT -->
+            <input type="file" id="photo-upload" accept="image/*" class="w-full bg-black border border-white/20 p-3 text-white outline-none mb-4">
+            <button onclick="uploadPhoto()" class="bg-[#D4AF37] text-black font-bold px-6 py-2">Upload to Gallery</button>
+            <p id="upload-status" class="text-green-500 mt-2 text-sm hidden">Photo Uploaded Successfully!</p>
+        </div>
+
+        <!-- 3. RESET GALLERY -->
+        <div class="border-t border-white/10 pt-8">
+            <button onclick="clearGallery()" class="text-red-500 underline text-sm">Delete All Uploaded Photos</button>
+        </div>
+    </div>
+
+    <script>
+        // Save Text
+        function saveText() {
+            let text = document.getElementById('hero-text').value;
+            if(text) {
+                localStorage.setItem('mangalam_text', text);
+                alert("Text Updated! Check live website.");
+            }
+        }
+
+        // Direct Photo Upload (With Auto Resize for Memory)
+        function uploadPhoto() {
+            const fileInput = document.getElementById('photo-upload');
+            const file = fileInput.files[0];
+            
+            if(!file) { alert("Pehle ek photo select karo!"); return; }
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const img = new Image();
+                img.onload = function() {
+                    // Photo choti karne ka code taaki memory full na ho
+                    const canvas = document.createElement('canvas');
+                    const MAX_WIDTH = 800;
+                    const scaleSize = MAX_WIDTH / img.width;
+                    canvas.width = MAX_WIDTH;
+                    canvas.height = img.height * scaleSize;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    
+                    const base64Photo = canvas.toDataURL('image/jpeg', 0.8);
+                    
+                    // Save to local storage
+                    let photos = JSON.parse(localStorage.getItem('mangalam_photos')) || [];
+                    photos.unshift(base64Photo); // Nayi photo sabse aage aayegi
+                    localStorage.setItem('mangalam_photos', JSON.stringify(photos));
+                    
+                    document.getElementById('upload-status').classList.remove('hidden');
+                    fileInput.value = ""; // Reset input
+                    setTimeout(() => document.getElementById('upload-status').classList.add('hidden'), 3000);
+                }
+                img.src = event.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+
+        // Delete Photos
+        function clearGallery() {
+            if(confirm("Are you sure you want to delete all photos?")) {
+                localStorage.removeItem('mangalam_photos');
+                alert("Gallery Cleared!");
+            }
+        }
+    </script>
+</body>
+</html>
+
