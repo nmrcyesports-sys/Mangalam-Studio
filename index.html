@@ -3,350 +3,406 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mangalam Studio | Premium Photography in Dhanbad</title>
-    <meta name="description" content="Expert wedding photography, studio portraits, and photo printing in Dhansar, Dhanbad. Call +91 70508 80507 to book.">
-
+    <title>Mangalam Studio | Premium Photography</title>
+    <meta name="description" content="Expert wedding photography and studio portraits in Dhanbad.">
     
-    <!-- Premium Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome for Premium Icons -->
+    <!-- Premium Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Tailwind CSS (CDN) -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        studio: {
-                            black: '#0a0a0a',
-                            dark: '#121212',
-                            gold: '#D4AF37',
-                            goldHover: '#B5952F',
-                            charcoal: '#1A1A1A',
-                            textMain: '#F5F5F5',
-                            textMuted: '#9CA3AF',
-                        }
+                        studio: { black: '#050505', dark: '#0a0a0a', gold: '#D4AF37', goldLight: '#F3E5AB', charcoal: '#151515', textMuted: '#9CA3AF' }
                     },
-                    fontFamily: {
-                        playfair: ['"Playfair Display"', 'serif'],
-                        montserrat: ['Montserrat', 'sans-serif'],
+                    fontFamily: { playfair: ['"Playfair Display"', 'serif'], montserrat: ['Montserrat', 'sans-serif'] },
+                    animation: {
+                        'marquee': 'marquee 25s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        marquee: { '0%': { transform: 'translateX(0%)' }, '100%': { transform: 'translateX(-50%)' } },
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } }
                     }
                 }
             }
         }
     </script>
 
-    <!-- Custom Premium Animations & Styles -->
     <style>
-        body { font-family: 'Montserrat', sans-serif; background-color: #0a0a0a; color: #F5F5F5; overflow-x: hidden; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #050505; color: #F5F5F5; overflow-x: hidden; }
         .font-playfair { font-family: '"Playfair Display"', serif; }
         
-        /* Smooth Reveal Animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.9s cubic-bezier(0.5, 0, 0, 1);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* Cinematic Blur Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(50px) scale(0.95); filter: blur(10px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        
+        /* Advanced Image Hover Setup */
+        .img-wrap { overflow: hidden; position: relative; }
+        .img-wrap img { transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .img-wrap:hover img { transform: scale(1.08); }
+        .img-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); opacity: 0; transition: opacity 0.5s ease; }
+        .img-wrap:hover::after { opacity: 1; }
 
-        /* Hero Parallax Background */
-        .bg-hero-image {
-            background-image: linear-gradient(to top, #0a0a0a 0%, transparent 100%), url('https://images.unsplash.com/photo-1606216794074-735e91aa2c92?q=80&w=2000&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        /* Gold Glow Effect on Hover */
-        .hover-glow:hover {
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-            border-color: rgba(212, 175, 55, 0.5);
-        }
+        .bg-hero-image { background-image: linear-gradient(to top, #050505 0%, rgba(5,5,5,0.2) 100%), url('https://images.unsplash.com/photo-1606216794074-735e91aa2c92?q=80&w=2000&auto=format&fit=crop'); background-size: cover; background-position: center; background-attachment: fixed; }
+        .hover-glow:hover { box-shadow: 0 0 30px rgba(212, 175, 55, 0.15); border-color: rgba(212, 175, 55, 0.4); transform: translateY(-5px); }
+        
+        /* Progress Bar */
+        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(to right, #D4AF37, #F3E5AB); z-index: 100; width: 0%; transition: width 0.1s; }
+        
+        /* Gradient Text */
+        .text-gradient-gold { background: linear-gradient(to right, #D4AF37, #FFF8D6, #D4AF37); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-size: 200% auto; animation: textShine 5s linear infinite; }
+        @keyframes textShine { to { background-position: 200% center; } }
     </style>
 </head>
 <body class="antialiased pb-16 md:pb-0 selection:bg-studio-gold selection:text-black">
 
-    <!-- NAVBAR (Glassmorphism Effect) -->
-    <nav class="fixed w-full z-50 bg-studio-black/80 backdrop-blur-lg border-b border-white/5 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <div class="flex items-center">
-    <div class="font-playfair text-2xl md:text-3xl font-bold text-[#D4AF37]">Mangalam Studio</div>
-    <a href="admin.html" class="ml-4 text-white text-[10px] uppercase tracking-widest border border-white/20 px-2 py-1 hover:text-[#D4AF37] transition">Admin</a>
-</div>
+    <!-- Scroll Progress Bar -->
+    <div id="progress-bar"></div>
 
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-50 bg-[#050505]/80 backdrop-blur-xl border-b border-white/5 transition-all duration-500 py-5" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            
+            <!-- SECRET ADMIN TRIGGER: Double-click this Logo -->
+            <div class="flex items-center">
+                <div ondblclick="openAdmin()" class="font-playfair text-2xl md:text-3xl font-bold text-studio-gold tracking-widest cursor-pointer select-none transition hover:text-studio-goldLight">
+                    MANGALAM
+                </div>
             </div>
-            <div class="hidden md:flex space-x-10 text-xs uppercase tracking-[0.2em] font-semibold text-studio-textMuted">
-                <a href="#services" class="hover:text-studio-gold transition duration-300">Services</a>
-                <a href="#portfolio" class="hover:text-studio-gold transition duration-300">Portfolio</a>
-                <a href="#reviews" class="hover:text-studio-gold transition duration-300">Reviews</a>
-                <a href="#contact" class="hover:text-studio-gold transition duration-300">Contact</a>
+
+            <div class="hidden md:flex space-x-12 text-xs uppercase tracking-[0.2em] font-semibold text-studio-textMuted">
+                <a href="#services" class="hover:text-white transition duration-300">Services</a>
+                <a href="#portfolio" class="hover:text-white transition duration-300">Portfolio</a>
+                <a href="#contact" class="hover:text-white transition duration-300">Contact</a>
             </div>
-            <a href="tel:+917050880507" class="hidden md:block bg-transparent border border-studio-gold text-studio-gold px-7 py-2.5 text-xs font-bold uppercase tracking-widest hover:bg-studio-gold hover:text-black transition-all duration-300">
-                Book Now
+            
+            <a href="tel:+917050880507" class="hidden md:block relative group overflow-hidden border border-studio-gold px-8 py-3 text-xs font-bold uppercase tracking-widest text-studio-gold transition-all">
+                <span class="relative z-10 group-hover:text-black transition-colors duration-300">Book Now</span>
+                <div class="absolute inset-0 bg-studio-gold transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 z-0"></div>
             </a>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
     <section class="relative h-screen flex items-center justify-center bg-hero-image">
-        <div class="absolute inset-0 bg-black/40"></div>
-        <div class="z-10 text-center px-4 max-w-5xl mt-20 reveal">
-            <p class="text-studio-gold tracking-[0.3em] uppercase text-sm mb-4 font-semibold">Welcome to Dhansar, Dhanbad</p>
-            <h1 class="font-playfair text-5xl md:text-8xl mb-6 text-white leading-tight font-medium">
-                Framing Life's <br/><span class="text-studio-gold italic">Masterpieces.</span>
-            </h1>
-            <p class="text-base md:text-lg text-gray-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
-                Premium wedding photography, cinematic films, and timeless studio portraits. Your story, elegantly captured.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
-                <a href="#portfolio" class="w-full sm:w-auto bg-studio-gold text-black px-10 py-4 uppercase tracking-widest text-sm font-bold hover:bg-studio-goldHover transition duration-300">
-                    Explore Gallery
-                </a>
-                <a href="https://wa.me/917050880507" target="_blank" class="w-full sm:w-auto border border-white text-white px-10 py-4 uppercase tracking-widest text-sm font-bold hover:bg-white hover:text-black transition duration-300">
-                    <i class="fa-brands fa-whatsapp mr-2"></i> Chat with us
-                </a>
+        <div class="absolute inset-0 bg-black/30"></div>
+        <div class="z-10 text-center px-4 max-w-5xl mt-20 reveal active animate-float">
+            <div class="inline-block border border-studio-gold/30 px-4 py-1 rounded-full mb-6">
+                <p class="text-studio-gold tracking-[0.3em] uppercase text-[10px] font-semibold">Premium Studio in Dhanbad</p>
             </div>
+            
+            <h1 id="live-hero-heading" class="font-playfair text-5xl md:text-[5.5rem] mb-6 text-white leading-[1.1] font-medium">
+                Framing Life's <br/><span class="text-gradient-gold italic font-bold">Masterpieces.</span>
+            </h1>
+            <p class="text-sm md:text-lg text-gray-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                Cinematic wedding films, timeless portraits, and memories preserved with absolute perfection.
+            </p>
+        </div>
+        
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce opacity-50">
+            <span class="text-[10px] uppercase tracking-[0.2em] text-white mb-2">Scroll</span>
+            <div class="w-[1px] h-10 bg-gradient-to-b from-white to-transparent"></div>
         </div>
     </section>
+
+    <!-- INFINITE SCROLLING MARQUEE (Addictive Element) -->
+    <div class="w-full bg-studio-gold py-3 overflow-hidden flex whitespace-nowrap z-20 relative shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+        <div class="animate-marquee flex space-x-8 items-center text-black uppercase tracking-[0.3em] text-xs font-bold">
+            <span>◆ Wedding Photography</span>
+            <span>◆ Cinematic Films</span>
+            <span>◆ Pre-Weddings</span>
+            <span>◆ Studio Portraits</span>
+            <span>◆ Premium Albums</span>
+            <span>◆ Photo Printing</span>
+            <!-- Duplicate for infinite loop -->
+            <span>◆ Wedding Photography</span>
+            <span>◆ Cinematic Films</span>
+            <span>◆ Pre-Weddings</span>
+            <span>◆ Studio Portraits</span>
+            <span>◆ Premium Albums</span>
+            <span>◆ Photo Printing</span>
+            <span>◆ Wedding Photography</span>
+        </div>
+    </div>
 
     <!-- SERVICES SECTION -->
-    <section id="services" class="py-24 bg-studio-dark">
+    <section id="services" class="py-32 bg-studio-dark">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-20 reveal">
-                <i class="fa-solid fa-camera-retro text-studio-gold text-3xl mb-4"></i>
-                <h2 class="font-playfair text-4xl md:text-5xl text-white mb-4">Our Expertise</h2>
-                <div class="h-0.5 w-20 bg-studio-gold mx-auto mb-6"></div>
-                <p class="text-studio-textMuted max-w-2xl mx-auto">Delivering unparalleled visual experiences with state-of-the-art equipment and creative vision.</p>
+            <div class="text-center mb-24 reveal">
+                <h2 class="font-playfair text-5xl text-white mb-6">The Expertise</h2>
+                <div class="h-[1px] w-24 bg-gradient-to-r from-transparent via-studio-gold to-transparent mx-auto"></div>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="bg-studio-charcoal p-10 hover:-translate-y-2 transition-all duration-500 border border-white/5 hover-glow reveal relative group overflow-hidden">
-                    <div class="absolute inset-0 bg-studio-gold/5 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-                    <i class="fa-solid fa-ring text-studio-gold text-4xl mb-6 relative z-10"></i>
-                    <h3 class="font-playfair text-2xl mb-4 text-white relative z-10">Weddings & Pre-Weddings</h3>
-                    <p class="text-studio-textMuted text-sm leading-relaxed relative z-10">Cinematic storytelling of your special day, capturing raw emotions, grand setups, and every beautiful detail.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="bg-[#111] p-12 transition-all duration-500 border border-white/5 hover-glow reveal group relative">
+                    <div class="w-16 h-16 rounded-full border border-studio-gold/30 flex items-center justify-center mb-8 group-hover:bg-studio-gold transition-colors duration-500">
+                        <i class="fa-solid fa-ring text-studio-gold text-2xl group-hover:text-black transition-colors"></i>
+                    </div>
+                    <h3 class="font-playfair text-3xl mb-4 text-white">Weddings</h3>
+                    <p class="text-studio-textMuted text-sm leading-relaxed font-light">Cinematic storytelling of your special day, capturing raw emotions, grand setups, and every beautiful detail.</p>
                 </div>
-                <!-- Service 2 -->
-                <div class="bg-studio-charcoal p-10 hover:-translate-y-2 transition-all duration-500 border border-white/5 hover-glow reveal relative group overflow-hidden">
-                    <div class="absolute inset-0 bg-studio-gold/5 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-                    <i class="fa-solid fa-user-tie text-studio-gold text-4xl mb-6 relative z-10"></i>
-                    <h3 class="font-playfair text-2xl mb-4 text-white relative z-10">Studio Portraits</h3>
-                    <p class="text-studio-textMuted text-sm leading-relaxed relative z-10">From professional corporate headshots and family portraits to high-quality instant passport-size photos.</p>
+                
+                <div class="bg-[#111] p-12 transition-all duration-500 border border-white/5 hover-glow reveal group relative mt-0 md:mt-12">
+                    <div class="w-16 h-16 rounded-full border border-studio-gold/30 flex items-center justify-center mb-8 group-hover:bg-studio-gold transition-colors duration-500">
+                        <i class="fa-solid fa-camera-retro text-studio-gold text-2xl group-hover:text-black transition-colors"></i>
+                    </div>
+                    <h3 class="font-playfair text-3xl mb-4 text-white">Portraits</h3>
+                    <p class="text-studio-textMuted text-sm leading-relaxed font-light">From professional corporate headshots and family portraits to high-quality instant passport-size photos.</p>
                 </div>
-                <!-- Service 3 -->
-                <div class="bg-studio-charcoal p-10 hover:-translate-y-2 transition-all duration-500 border border-white/5 hover-glow reveal relative group overflow-hidden">
-                    <div class="absolute inset-0 bg-studio-gold/5 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-                    <i class="fa-solid fa-book-open-reader text-studio-gold text-4xl mb-6 relative z-10"></i>
-                    <h3 class="font-playfair text-2xl mb-4 text-white relative z-10">Premium Albums</h3>
-                    <p class="text-studio-textMuted text-sm leading-relaxed relative z-10">Luxurious photobook designs, high-resolution photo printing, and custom framing to preserve memories forever.</p>
+                
+                <div class="bg-[#111] p-12 transition-all duration-500 border border-white/5 hover-glow reveal group relative">
+                    <div class="w-16 h-16 rounded-full border border-studio-gold/30 flex items-center justify-center mb-8 group-hover:bg-studio-gold transition-colors duration-500">
+                        <i class="fa-solid fa-book-open text-studio-gold text-2xl group-hover:text-black transition-colors"></i>
+                    </div>
+                    <h3 class="font-playfair text-3xl mb-4 text-white">Albums</h3>
+                    <p class="text-studio-textMuted text-sm leading-relaxed font-light">Luxurious photobook designs, high-resolution photo printing, and custom framing to preserve memories.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PORTFOLIO GALLERY -->
-    <section id="portfolio" class="py-24 bg-studio-black">
+    <!-- DYNAMIC PORTFOLIO GALLERY -->
+    <section id="portfolio" class="py-32 bg-[#050505]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 reveal">
-                <h2 class="font-playfair text-4xl md:text-5xl text-white mb-4">Featured Works</h2>
-                <div class="h-0.5 w-20 bg-studio-gold mx-auto"></div>
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+                <div>
+                    <h2 class="font-playfair text-5xl text-white mb-4">Portfolio</h2>
+                    <div class="h-[1px] w-24 bg-gradient-to-r from-studio-gold to-transparent"></div>
+                </div>
+                <p class="text-studio-textMuted text-sm max-w-xs text-right hidden md:block italic">"Photography is the story I fail to put into words."</p>
             </div>
             
-            <div id="dynamic-gallery" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-
-                <!-- Gallery Item 1 -->
-                <div class="group overflow-hidden bg-studio-charcoal aspect-[4/5] relative reveal border border-white/5">
-                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" alt="Indian Wedding" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex items-end p-6">
-                        <span class="text-studio-gold font-playfair text-xl tracking-wide">Wedding Stories</span>
-                    </div>
-                </div>
-                <!-- Gallery Item 2 -->
-                <div class="group overflow-hidden bg-studio-charcoal aspect-[4/5] relative reveal border border-white/5 md:mt-10">
-                    <img src="https://images.unsplash.com/photo-1610173827002-629df4ecf8df?auto=format&fit=crop&w=800&q=80" alt="Portrait" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex items-end p-6">
-                        <span class="text-studio-gold font-playfair text-xl tracking-wide">Elegant Portraits</span>
-                    </div>
-                </div>
-                <!-- Gallery Item 3 -->
-                <div class="group overflow-hidden bg-studio-charcoal aspect-[4/5] relative reveal border border-white/5">
-                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" alt="Events" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex items-end p-6">
-                        <span class="text-studio-gold font-playfair text-xl tracking-wide">Grand Events</span>
+            <!-- ADMIN UPLOADED PHOTOS WILL APPEAR HERE -->
+            <div id="dynamic-gallery" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <!-- Fallback Default Image -->
+                <div class="img-wrap bg-studio-charcoal aspect-[4/5] border border-white/5 reveal">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" alt="Wedding" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-500 cursor-crosshair">
+                        <i class="fa-solid fa-expand text-studio-gold text-3xl drop-shadow-lg"></i>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- GOOGLE REVIEWS SECTION (Clean Link Integrated) -->
-    <section id="reviews" class="py-24 bg-studio-dark border-y border-white/5 relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-64 h-64 bg-studio-gold/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+    <!-- REVIEWS & MAP SECTION -->
+    <section id="contact" class="py-32 bg-studio-dark border-t border-white/5 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-studio-gold/5 rounded-full blur-[100px] pointer-events-none"></div>
         
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal relative z-10">
-            <div class="flex justify-center space-x-2 mb-6">
-                <i class="fa-solid fa-star text-studio-gold text-2xl"></i>
-                <i class="fa-solid fa-star text-studio-gold text-2xl"></i>
-                <i class="fa-solid fa-star text-studio-gold text-2xl"></i>
-                <i class="fa-solid fa-star text-studio-gold text-2xl"></i>
-                <i class="fa-solid fa-star text-studio-gold text-2xl"></i>
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-20 relative z-10">
+            <div class="reveal">
+                <p class="text-studio-gold tracking-[0.3em] uppercase text-[10px] font-semibold mb-4">Get in Touch</p>
+                <h2 class="font-playfair text-5xl md:text-6xl text-white mb-8">Let's Create <br><span class="text-gradient-gold italic font-bold">Magic.</span></h2>
+                <p class="text-studio-textMuted mb-12 font-light leading-relaxed max-w-md">Visit our studio opposite Raj Clinic to discuss your upcoming events, or drop us a message.</p>
+                
+                <div class="space-y-8 mb-12">
+                    <div class="flex items-start group">
+                        <div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center mr-6 group-hover:border-studio-gold transition duration-500">
+                            <i class="fa-solid fa-location-dot text-studio-gold"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white uppercase tracking-widest text-xs mb-2">Location</h4>
+                            <p class="text-studio-textMuted text-sm leading-relaxed font-light">Joraphatak Road, Opposite Raj Clinic<br/>Dhansar, Dhanbad 826007</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start group">
+                        <div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center mr-6 group-hover:border-studio-gold transition duration-500">
+                            <i class="fa-solid fa-phone text-studio-gold"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white uppercase tracking-widest text-xs mb-2">Contact</h4>
+                            <p class="text-white text-lg font-playfair mb-1">+91 70508 80507</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="https://www.google.com/search?q=Mangalam+Studio+Dhanbad+Reviews" target="_blank" class="inline-flex items-center border border-studio-gold text-studio-gold px-8 py-4 uppercase font-bold text-xs tracking-widest hover:bg-studio-gold hover:text-black transition duration-500">
+                    <i class="fa-brands fa-google mr-3"></i> Read Google Reviews
+                </a>
             </div>
-            <h2 class="font-playfair text-4xl md:text-5xl text-white mb-6">Loved by Dhanbad</h2>
-            <p class="text-studio-textMuted text-lg mb-10 font-light leading-relaxed">
-                "Quality of photos, perfect lighting, and wonderful behavior. The best photography studio in Dhansar!"
-            </p>
-            
-            <!-- CLEAN GOOGLE REVIEWS LINK -->
-            <a href="https://www.google.com/search?q=Mangalam+Studio+Dhanbad+Reviews" target="_blank" class="inline-flex items-center border-2 border-studio-gold text-studio-gold px-8 py-4 uppercase tracking-widest text-sm font-bold hover:bg-studio-gold hover:text-black transition duration-300">
-                <i class="fa-brands fa-google mr-3 text-lg"></i> Read & Write Reviews
-            </a>
-            <p class="mt-4 text-xs text-gray-500">Visit our official Google Business Profile</p>
-        </div>
-    </section>
 
-    <!-- CONTACT & MAP SECTION -->
-    <section id="contact" class="py-24 bg-studio-black">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                
-                <!-- Contact Info -->
-                <div class="reveal">
-                    <h2 class="font-playfair text-4xl md:text-5xl text-white mb-6">Let's Capture <br><span class="text-studio-gold italic">Magic.</span></h2>
-                    <p class="text-studio-textMuted mb-10 font-light leading-relaxed">
-                        Visit our studio opposite Raj Clinic to discuss your upcoming events, or drop us a message to check our availability.
-                    </p>
-                    
-                    <div class="space-y-8">
-                        <div class="flex items-start group">
-                            <div class="w-12 h-12 rounded-full bg-studio-charcoal border border-white/10 flex items-center justify-center mr-6 group-hover:border-studio-gold transition duration-300">
-                                <i class="fa-solid fa-location-dot text-studio-gold text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-white tracking-widest uppercase text-sm mb-2">Studio Location</h4>
-                                <p class="text-studio-textMuted text-sm leading-relaxed">Mangalam Studio Dhanbad<br/>Joraphatak Road, Opposite Raj Clinic<br/>Dhansar, Dhanbad, Jharkhand 826007</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start group">
-                            <div class="w-12 h-12 rounded-full bg-studio-charcoal border border-white/10 flex items-center justify-center mr-6 group-hover:border-studio-gold transition duration-300">
-                                <i class="fa-solid fa-phone text-studio-gold text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-white tracking-widest uppercase text-sm mb-2">Direct Contact</h4>
-                                <p class="text-studio-textMuted text-sm mb-1">+91 70508 80507</p>
-                                <a href="https://wa.me/917050880507" target="_blank" class="text-studio-gold text-xs font-bold hover:underline"><i class="fa-brands fa-whatsapp mr-1"></i> Message on WhatsApp</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-8 text-xs text-studio-textMuted italic">
-                        * Advance bookings for event dates can be made conveniently in person or online.
-                    </div>
-                </div>
-
-                <!-- Google Map (Styled for Dark Theme) -->
-                <div class="bg-studio-charcoal p-2 border border-white/10 reveal shadow-2xl relative group">
-                    <div class="absolute inset-0 bg-studio-gold/10 opacity-0 group-hover:opacity-100 transition duration-500 pointer-events-none"></div>
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14603.204565612344!2d86.4281083!3d23.7817881!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f6a3297c7ac049%3A0xf3cac0a73abb4fe!2sMANGALAM%20STUDIO%20DHANBAD!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
-                        width="100%" 
-                        height="450" 
-                        style="border:0; filter: invert(90%) hue-rotate(180deg) contrast(80%);" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade"
-                        class="w-full h-[400px] lg:h-full object-cover">
-                    </iframe>
-                </div>
-                
+            <div class="bg-[#111] p-3 border border-white/10 reveal shadow-2xl relative group h-[400px] lg:h-auto">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14603.204565612344!2d86.4281083!3d23.7817881!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f6a3297c7ac049%3A0xf3cac0a73abb4fe!2sMANGALAM%20STUDIO%20DHANBAD!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg) contrast(90%) grayscale(20%);" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="bg-[#050505] pt-16 pb-8 border-t border-white/5 text-center">
-        <div class="font-playfair text-2xl text-studio-gold mb-6">Mangalam Studio</div>
-        <div class="flex justify-center space-x-6 mb-8">
-            <a href="#" class="w-10 h-10 rounded-full bg-studio-charcoal flex items-center justify-center text-white hover:bg-studio-gold hover:text-black transition duration-300"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" class="w-10 h-10 rounded-full bg-studio-charcoal flex items-center justify-center text-white hover:bg-studio-gold hover:text-black transition duration-300"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="https://wa.me/917050880507" target="_blank" class="w-10 h-10 rounded-full bg-studio-charcoal flex items-center justify-center text-white hover:bg-studio-gold hover:text-black transition duration-300"><i class="fa-brands fa-whatsapp"></i></a>
+    <footer class="bg-[#020202] pt-20 pb-10 text-center border-t border-white/5">
+        <h2 class="font-playfair text-3xl text-studio-gold mb-8 tracking-widest">MANGALAM</h2>
+        <div class="flex justify-center space-x-6 mb-10">
+            <a href="https://wa.me/917050880507" target="_blank" class="text-white/50 hover:text-studio-gold transition text-xl"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" class="text-white/50 hover:text-studio-gold transition text-xl"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="text-white/50 hover:text-studio-gold transition text-xl"><i class="fa-brands fa-facebook-f"></i></a>
         </div>
-        <p class="text-gray-600 text-xs uppercase tracking-widest font-semibold">
-            &copy; 2026 Mangalam Studio Dhanbad. All rights reserved.
-        </p>
+        <p class="text-white/30 text-[10px] uppercase tracking-[0.3em]">&copy; 2026 Mangalam Studio. All rights reserved.</p>
     </footer>
 
     <!-- MOBILE STICKY BOTTOM BAR -->
-    <div class="md:hidden fixed bottom-0 left-0 w-full bg-studio-charcoal/95 backdrop-blur-md border-t border-white/10 flex z-50">
-        <a href="tel:+917050880507" class="flex-1 flex justify-center items-center py-4 text-white uppercase text-xs tracking-widest font-bold hover:bg-white/5">
+    <div class="md:hidden fixed bottom-0 left-0 w-full bg-[#050505]/95 backdrop-blur-xl border-t border-white/10 flex z-50">
+        <a href="tel:+917050880507" class="flex-1 flex justify-center items-center py-4 text-white uppercase text-[10px] tracking-[0.2em] font-bold active:bg-white/5 transition">
             <i class="fa-solid fa-phone mr-2 text-studio-gold"></i> Call
         </a>
-        <div class="w-px bg-white/10 my-2"></div>
-        <a href="https://wa.me/917050880507" target="_blank" class="flex-1 flex justify-center items-center py-4 text-white uppercase text-xs tracking-widest font-bold hover:bg-white/5">
-            <i class="fa-brands fa-whatsapp text-lg mr-2 text-green-500"></i> WhatsApp
+        <div class="w-[1px] bg-white/10 my-3"></div>
+        <a href="https://wa.me/917050880507" target="_blank" class="flex-1 flex justify-center items-center py-4 text-white uppercase text-[10px] tracking-[0.2em] font-bold active:bg-white/5 transition">
+            <i class="fa-brands fa-whatsapp text-lg mr-2 text-[#25D366]"></i> WhatsApp
         </a>
     </div>
 
-    <!-- Advanced Scroll Animations Script -->
+    <!-- ========================================== -->
+    <!-- HIDDEN ADMIN DASHBOARD (PASSWORD PROTECTED)-->
+    <!-- ========================================== -->
+    <div id="admin-modal" class="hidden fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-[#111] border border-studio-gold/30 p-8 w-full max-w-2xl shadow-2xl relative rounded-sm">
+            <button onclick="closeAdmin()" class="absolute top-4 right-4 text-white/50 hover:text-red-500 text-2xl transition"><i class="fa-solid fa-xmark"></i></button>
+            <h2 class="text-3xl font-playfair text-studio-gold mb-8 border-b border-white/5 pb-4">Studio System Setup</h2>
+            
+            <div class="mb-8">
+                <label class="block text-xs uppercase tracking-widest text-gray-400 mb-3">1. Update Tagline Text</label>
+                <div class="flex gap-2">
+                    <input type="text" id="admin-heading" placeholder="Framing Life's Masterpieces." class="flex-1 bg-black border border-white/10 p-3 text-white outline-none focus:border-studio-gold transition">
+                    <button onclick="saveHeading()" class="bg-studio-gold text-black text-xs uppercase tracking-widest font-bold px-6 py-3 hover:bg-white transition">Save</button>
+                </div>
+            </div>
+
+            <div class="mb-8 border-t border-white/5 pt-6">
+                <label class="block text-xs uppercase tracking-widest text-gray-400 mb-3">2. Add New Portfolio Photo</label>
+                <input type="file" id="admin-photo" accept="image/*" class="w-full bg-black border border-white/10 p-3 text-white outline-none mb-4 file:mr-4 file:py-2 file:px-4 file:border-0 file:bg-studio-gold file:text-black file:font-bold file:uppercase file:text-[10px] file:tracking-widest hover:file:bg-white cursor-pointer">
+                <button onclick="uploadPhoto()" class="w-full border border-studio-gold text-studio-gold text-xs font-bold px-6 py-4 uppercase tracking-[0.2em] hover:bg-studio-gold hover:text-black transition">Upload to Live Gallery</button>
+                <p id="upload-msg" class="text-[#25D366] text-xs uppercase tracking-widest mt-4 text-center hidden"><i class="fa-solid fa-check mr-2"></i> Photo Added Successfully</p>
+            </div>
+
+            <div class="border-t border-white/5 pt-6 text-right">
+                <button onclick="clearAllData()" class="text-red-500/70 text-[10px] uppercase tracking-[0.2em] hover:text-red-500 transition">Factory Reset Gallery</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SCRIPTS (ANIMATIONS + ADMIN LOGIC)         -->
+    <!-- ========================================-->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.15
+            // --- SCROLL PROGRESS BAR ---
+            window.onscroll = function() {
+                let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                document.getElementById("progress-bar").style.width = ((winScroll / height) * 100) + "%";
             };
 
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.reveal').forEach((element) => {
-                observer.observe(element);
-            });
-
+            // --- NAVBAR SHRINK ON SCROLL ---
             const navbar = document.getElementById('navbar');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 50) {
-                    navbar.classList.add('py-2');
-                    navbar.classList.remove('py-4');
+                    navbar.classList.add('py-3'); navbar.classList.remove('py-5');
                 } else {
-                    navbar.classList.add('py-4');
-                    navbar.classList.remove('py-2');
+                    navbar.classList.add('py-5'); navbar.classList.remove('py-3');
                 }
             });
+
+            // --- CINEMATIC REVEAL ANIMATIONS ---
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Stagger effect for multiple items
+                        setTimeout(() => {
+                            entry.target.classList.add('active');
+                        }, index * 150); 
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            // --- LOAD ADMIN DATA (TEXT & PHOTOS) ---
+            const savedText = localStorage.getItem('mangalam_text');
+            if(savedText) {
+                // Split text so "Masterpieces." stays gold
+                const parts = savedText.split("Masterpieces.");
+                if(parts.length > 1) {
+                    document.getElementById('live-hero-heading').innerHTML = `${parts[0]} <br/><span class="text-gradient-gold italic font-bold">Masterpieces.</span>`;
+                } else {
+                    document.getElementById('live-hero-heading').innerHTML = savedText;
+                }
+                document.getElementById('admin-heading').value = savedText;
+            }
+
+            const savedPhotos = JSON.parse(localStorage.getItem('mangalam_photos'));
+            const gallery = document.getElementById('dynamic-gallery');
+            if(savedPhotos && savedPhotos.length > 0) {
+                gallery.innerHTML = ""; // Clear default
+                savedPhotos.forEach(photo => {
+                    gallery.innerHTML += `
+                        <div class="img-wrap bg-[#111] aspect-[4/5] border border-white/5 reveal active">
+                            <img src="${photo}" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-500 cursor-crosshair">
+                                <i class="fa-solid fa-expand text-studio-gold text-3xl drop-shadow-lg"></i>
+                            </div>
+                        </div>`;
+                });
+            }
         });
-    </script>
-    <!-- ADMIN PAGE SE PHOTO LANE WALA UPDATE -->
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Admin page se upload ki hui photos ko uthana
-        const savedPhotos = JSON.parse(localStorage.getItem('mangalam_photos'));
-        const gallery = document.getElementById('dynamic-gallery');
-        
-        if(savedPhotos && savedPhotos.length > 0 && gallery) {
-            gallery.innerHTML = ""; // Puraani default photo hata dega
-            
-            savedPhotos.forEach(photo => {
-                gallery.innerHTML += `
-                    <div class="group overflow-hidden bg-[#1A1A1A] aspect-[4/5] border border-white/5">
-                        <img src="${photo}" class="w-full h-full object-cover transition duration-700 hover:scale-110 opacity-80 hover:opacity-100">
-                    </div>
-                `;
-            });
+
+        // --- SECRET ADMIN LOGIC ---
+        function openAdmin() {
+            let pass = prompt("Enter Master Password:");
+            if (pass === "7050880507") {
+                document.getElementById('admin-modal').classList.remove('hidden');
+                document.body.style.overflow = "hidden";
+            } else if (pass !== null) alert("Access Denied.");
         }
-    });
-</script>
-    
+        function closeAdmin() {
+            document.getElementById('admin-modal').classList.add('hidden');
+            document.body.style.overflow = "auto";
+            location.reload();
+        }
+
+        // --- ADMIN SAVE FUNCTIONS ---
+        function saveHeading() {
+            localStorage.setItem('mangalam_text', document.getElementById('admin-heading').value);
+            alert("Text saved!");
+        }
+
+        function uploadPhoto() {
+            const file = document.getElementById('admin-photo').files[0];
+            if(!file) { alert("Select a photo."); return; }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const MAX_WIDTH = 1000;
+                    const scale = MAX_WIDTH / img.width;
+                    canvas.width = MAX_WIDTH; canvas.height = img.height * scale;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    
+                    const compressedPhoto = canvas.toDataURL('image/jpeg', 0.85);
+                    let photos = JSON.parse(localStorage.getItem('mangalam_photos')) || [];
+                    photos.unshift(compressedPhoto);
+                    localStorage.setItem('mangalam_photos', JSON.stringify(photos));
+                    
+                    document.getElementById('upload-msg').classList.remove('hidden');
+                    document.getElementById('admin-photo').value = "";
+                    setTimeout(() => document.getElementById('upload-msg').classList.add('hidden'), 3000);
+                }
+                img.src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+
+        function clearAllData() {
+            if(confirm("DANGER: Delete all uploaded photos?")) {
+                localStorage.removeItem('mangalam_text'); localStorage.removeItem('mangalam_photos');
+                alert("Gallery Reset!"); location.reload();
+            }
+        }
+    </script>
 </body>
 </html>
