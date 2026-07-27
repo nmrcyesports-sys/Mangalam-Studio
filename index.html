@@ -155,7 +155,8 @@
                 <div class="h-0.5 w-20 bg-studio-gold mx-auto"></div>
             </div>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div id="dynamic-gallery" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+">
                 <!-- Gallery Item 1 -->
                 <div class="group overflow-hidden bg-studio-charcoal aspect-[4/5] relative reveal border border-white/5">
                     <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" alt="Indian Wedding" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100">
@@ -322,5 +323,26 @@
             });
         });
     </script>
+    <!-- ADMIN PAGE SE PHOTO LANE WALA UPDATE -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Admin page se upload ki hui photos ko uthana
+        const savedPhotos = JSON.parse(localStorage.getItem('mangalam_photos'));
+        const gallery = document.getElementById('dynamic-gallery');
+        
+        if(savedPhotos && savedPhotos.length > 0 && gallery) {
+            gallery.innerHTML = ""; // Puraani default photo hata dega
+            
+            savedPhotos.forEach(photo => {
+                gallery.innerHTML += `
+                    <div class="group overflow-hidden bg-[#1A1A1A] aspect-[4/5] border border-white/5">
+                        <img src="${photo}" class="w-full h-full object-cover transition duration-700 hover:scale-110 opacity-80 hover:opacity-100">
+                    </div>
+                `;
+            });
+        }
+    });
+</script>
+    
 </body>
 </html>
